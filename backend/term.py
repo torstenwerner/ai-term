@@ -4,6 +4,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 from google import genai
 from google.genai import types
+from markdown import markdown
 
 from prompts import prompt, PromptType
 
@@ -17,7 +18,7 @@ def generate(prompt_type: PromptType, term: str) -> str:
 
     :param prompt_type: Indicates the type of prompt. Must be an instance of PromptType.
     :param term: The specific term or input string used within the generated prompt.
-    :return: The AI answer text as a stripped string.
+    :return: The AI answer text as a stripped string in HTML format.
     """
     client = genai.Client(api_key=os.environ.get("GOOGLE_API_KEY"))
 
@@ -38,10 +39,10 @@ def generate(prompt_type: PromptType, term: str) -> str:
         contents=contents,
         config=generate_content_config,
     )
-    return response.text.strip()
+    return markdown(response.text.strip(), extensions=["extra", "fenced_code"])
 
 
 if __name__ == "__main__":
     # answer = generate(PromptType.DICTIONARY_EN, "flash")
     answer = generate(PromptType.ENCYCLOPEDIA_EN, "Python")
-    Path("answer.md").write_text(answer)
+    Path("answer.html").write_text(answer)

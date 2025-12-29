@@ -1,4 +1,5 @@
 .env
+answer*.html
 answer*.md
 http-client.private.env.json
 backend/lambda_function.zip
