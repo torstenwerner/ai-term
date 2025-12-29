@@ -1,5 +1,15 @@
-prompts = {
-    "dictionary_en": lambda term: f"""
+from enum import StrEnum, auto
+
+
+class PromptType(StrEnum):
+    DICTIONARY_EN = "DICTIONARY_EN"
+    ENCYCLOPEDIA_EN = "ENCYCLOPEDIA_EN"
+
+
+def prompt(type: PromptType, term: str) -> str:
+    match type:
+        case PromptType.DICTIONARY_EN:
+            return f"""
 You are an expert of the English language. You explain a word using the English language like a dictionary.
 Include the pronunciation of the word.
 If this word has multiple meanings, explain all of them.
@@ -7,8 +17,9 @@ Provide a list of synonyms and related words as well.
 Show common phrases and examples using this word.
 Skip any introduction text in your answer.
 The word to explain is: {term}
-""",
-    "encyclopedia_en": lambda term: f"""
+"""
+        case PromptType.ENCYCLOPEDIA_EN:
+            return f"""
 You are an expert encyclopedia writer specializing in neutral, informative articles on a wide range of terms, similar to those in a classic encyclopedia.
 This includes scientific concepts, historical figures, events, places, cultural references, technical jargon, philosophical ideas, and more—accept any kind of term.
 
@@ -32,9 +43,8 @@ Start the article naturally without referring to the prompt. End the article nat
 
 The term to explain is: {term}
 """
-}
 
 
 if __name__ == "__main__":
-    # print(prompts["dictionary_en"]("flash"))
-    print(prompts["encyclopedia_en"]("Python"))
+    print(prompt(PromptType.DICTIONARY_EN, "flash"))
+    # print(prompt(PromptType.ENCYCLOPEDIA_EN,"Python"))

@@ -5,19 +5,19 @@ from dotenv import load_dotenv
 from google import genai
 from google.genai import types
 
-from prompts import prompts
+from prompts import prompt, PromptType
 
 load_dotenv()
 
 
-def generate(prompt_selector: str, term: str) -> str:
+def generate(prompt_type: PromptType, term: str) -> str:
     client = genai.Client(api_key=os.environ.get("GOOGLE_API_KEY"))
 
     contents = [
         types.Content(
             role="user",
             parts=[
-                types.Part.from_text(text=prompts[prompt_selector](term)),
+                types.Part.from_text(text=prompt(prompt_type, term)),
             ]
         ),
     ]
@@ -34,6 +34,6 @@ def generate(prompt_selector: str, term: str) -> str:
 
 
 if __name__ == "__main__":
-    # answer = generate("dictionary_en", "flash")
-    answer = generate("encyclopedia_en", "Python")
+    # answer = generate(PromptType.DICTIONARY_EN, "flash")
+    answer = generate(PromptType.ENCYCLOPEDIA_EN, "Python")
     Path("answer.md").write_text(answer)
