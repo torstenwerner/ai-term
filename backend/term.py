@@ -44,5 +44,6 @@ def generate(prompt_type: PromptType, term: str) -> str:
 
 if __name__ == "__main__":
     # answer = generate(PromptType.DICTIONARY_EN, "flash")
-    answer = generate(PromptType.ENCYCLOPEDIA_EN, "Python")
+    # answer = generate(PromptType.ENCYCLOPEDIA_EN, "Python")
+    answer = generate(PromptType.ENCYCLOPEDIA_DE, "Mars")
     Path("answer.html").write_text(answer)

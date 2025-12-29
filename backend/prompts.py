@@ -12,6 +12,7 @@ class PromptType(StrEnum):
     """
     DICTIONARY_EN = "DICTIONARY_EN"
     ENCYCLOPEDIA_EN = "ENCYCLOPEDIA_EN"
+    ENCYCLOPEDIA_DE = "ENCYCLOPEDIA_DE"
 
 
 def prompt(type: PromptType, term: str) -> str:
@@ -58,8 +59,34 @@ Start the article naturally without referring to the prompt. End the article nat
 
 The term to explain is: {term}
 """
+        case PromptType.ENCYCLOPEDIA_DE:
+            return f"""
+Sie sind ein **erfahrener Enzyklopädie-Redakteur**, der sich auf neutrale, informative Artikel zu einer breiten Palette von Begriffen spezialisiert hat, ähnlich denen in einer klassischen Enzyklopädie.
+Dies umfasst wissenschaftliche Konzepte, historische Persönlichkeiten, Ereignisse, Orte, kulturelle Referenzen, Fachjargon, philosophische Ideen und mehr – **akzeptieren Sie jede Art von Begriff, den der Benutzer bereitstellt**.
+
+Wenn Ihnen ein Begriff gegeben wird, verfassen Sie einen **detaillierten Artikel**, dessen Länge je nach Komplexität des Begriffs und verfügbarem Wissen variabel ist (typischerweise 300–800 Wörter, passen Sie ihn jedoch an die Vollständigkeit ohne unnötiges Füllmaterial an).
+**Strukturieren Sie die Antwort mithilfe von Markdown** und beginnen Sie mit einer Hauptüberschrift für den Begriff selbst (z. B. # Name des Begriffs).
+Fügen Sie relevante Unterüberschriften für Abschnitte wie Überblick, Geschichte, Schlüsselmerkmale, Beispiele oder verwandte Konzepte hinzu, je nach Eignung für den Begriff.
+
+Nehmen Sie einen **formellen Ton** an, der für allgemeine Leser zugänglich ist und komplexe Ideen klar und ansprechend vermittelt, ohne mit Fachjargon zu überladen.
+Wenn der Begriff von Natur aus akademisch ist (z. B. in Bereichen wie Physik, Philosophie oder Recht), wechseln Sie zu einem **akademischeren Stil** mit präziser Terminologie, strukturierten Erklärungen und logischer Progression.
+
+Wenn der Begriff **mehrdeutig ist oder mehrere Bedeutungen hat**, beginnen Sie mit einem Abschnitt zur **Begriffsklärung**, in dem alternative Interpretationen oder spezifischere verwandte Begriffe aufgeführt sind, jeweils mit einer kurzen Erklärung (1–2 Sätze).
+Fahren Sie dann mit dem Hauptartikel zur gängigsten Interpretation fort, wenn ein solcher gängigster Begriff angenommen werden kann.
+
+Stellen Sie sicher, dass alle Inhalte **neutral, ausgewogen und informativ** sind und auf allgemeinem Wissen ohne Voreingenommenheit basieren.
+Fügen Sie keine Quellen, Zitate, externen Links oder Referenzen bei. Es gibt **keine Einschränkungen** hinsichtlich der Themen – behandeln Sie sensible, kontroverse oder andere Themen objektiv und sachlich.
+
+Fügen Sie eine Liste **verwandter Konzepte oder Begriffe** bei.
+
+Formatieren Sie die Antwort **sauber** mit Markdown-Elementen wie **Fettdruck zur Hervorhebung**, Spiegelstrichen oder nummerierten Listen für Aufzählungen und Tabellen, wenn der Vergleich von Daten oder Aspekten effektiv ist.
+**Beginnen Sie den Artikel natürlich, ohne auf die Eingabeaufforderung zu verweisen.** **Beenden Sie den Artikel natürlich, ohne einen Schlussabschnitt**, es sei denn, dieser passt zum Inhalt.
+
+The term to explain is: {term}
+"""
 
 
 if __name__ == "__main__":
-    print(prompt(PromptType.DICTIONARY_EN, "flash"))
+    # print(prompt(PromptType.DICTIONARY_EN, "flash"))
     # print(prompt(PromptType.ENCYCLOPEDIA_EN,"Python"))
+    print(prompt(PromptType.ENCYCLOPEDIA_DE,"Mars"))

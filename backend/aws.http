@@ -17,3 +17,13 @@ x-api-key: {{awsApiKey}}
   "prompt_type": "ENCYCLOPEDIA_EN",
   "term": "Python"
 }
+
+### ENCYCLOPEDIA_DE
+POST https://veuitj2bi4.execute-api.us-east-1.amazonaws.com/default/ai-term
+Content-Type: application/json
+x-api-key: {{awsApiKey}}
+
+{
+  "prompt_type": "ENCYCLOPEDIA_DE",
+  "term": "Mars"
+}
