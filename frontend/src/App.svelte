@@ -26,6 +26,10 @@
         inputElement?.focus();
     }
 
+    function handleInputClick() {
+        inputElement?.select();
+    }
+
     async function handleSubmit() {
         loading = true;
         error = null;
@@ -63,6 +67,7 @@
                         type="text"
                         bind:value={prompt}
                         bind:this={inputElement}
+                        on:click={handleInputClick}
                         placeholder="Mars"
                         title="Enter a term"
                         disabled={loading}
