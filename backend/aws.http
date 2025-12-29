@@ -1,0 +1,9 @@
+### test the AWS API gateway
+POST https://veuitj2bi4.execute-api.us-east-1.amazonaws.com/default/ai-term
+Content-Type: application/json
+x-api-key: {{awsApiKey}}
+
+{
+  "prompt_type": "DICTIONARY_EN",
+  "term": "flash"
+}
