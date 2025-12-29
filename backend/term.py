@@ -12,10 +12,6 @@ load_dotenv()
 def generate(term: str) -> str:
     client = genai.Client(api_key=os.environ.get("GOOGLE_API_KEY"))
 
-    # model = "gemini-2.0-flash-lite"
-    model = "gemini-2.5-flash-lite"
-    # model = "gemini-2.5-flash"
-    # model = "gemini-3-flash-preview"
     contents = [
         types.Content(
             role="user",
@@ -29,7 +25,7 @@ def generate(term: str) -> str:
     )
 
     response = client.models.generate_content(
-            model=model,
+            model=os.environ.get("GOOGLE_MODEL"),
             contents=contents,
             config=generate_content_config,
     )
