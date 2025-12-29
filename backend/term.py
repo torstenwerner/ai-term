@@ -1,4 +1,5 @@
 import os
+from pathlib import Path
 
 from dotenv import load_dotenv
 from google import genai
@@ -25,14 +26,13 @@ def generate(term: str) -> str:
     )
 
     response = client.models.generate_content(
-            model=os.environ.get("GOOGLE_MODEL"),
-            contents=contents,
-            config=generate_content_config,
+        model=os.environ.get("GOOGLE_MODEL"),
+        contents=contents,
+        config=generate_content_config,
     )
-    print(response.text.strip())
-    return "failed to generate answer"
+    return response.text.strip()
 
 
 if __name__ == "__main__":
     answer = generate("dictionary")
-    print(answer)
+    Path("answer.md").write_text(answer)
