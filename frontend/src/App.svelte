@@ -20,6 +20,10 @@
         }
     });
 
+    function handleTypeChange() {
+        prompt = '';
+    }
+
     async function handleSubmit() {
         loading = true;
         error = null;
@@ -47,7 +51,7 @@
 <div class="app-container">
     <main>
         <form on:submit|preventDefault={handleSubmit}>
-            <select bind:value={type} disabled={loading}>
+            <select bind:value={type} on:change={handleTypeChange} disabled={loading}>
                 <option value="DICTIONARY_EN">Dictionary English</option>
                 <option value="ENCYCLOPEDIA_EN">Encyclopedia English</option>
                 <option value="ENCYCLOPEDIA_DE">Encyclopedia German</option>
