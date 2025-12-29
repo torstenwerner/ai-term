@@ -5,7 +5,7 @@
 
 <footer class="footer">
   <div class="footer-content">
-    <a href="https://github.com/torstenwerner/vulnerability-analysis" target="_blank" rel="noopener noreferrer" class="github-link">
+    <a href="https://github.com/torstenwerner/ai-term" target="_blank" rel="noopener noreferrer" class="github-link">
       <svg viewBox="0 0 24 24" class="github-icon" aria-hidden="true">
         <path d={githubLogo} fill="currentColor"></path>
       </svg>
