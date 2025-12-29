@@ -1,6 +1,8 @@
 .env
+.env.local
 answer*.html
 answer*.md
 http-client.private.env.json
 backend/lambda_function.zip
 backend/lambda_package/
+node_modules
