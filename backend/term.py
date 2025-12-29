@@ -5,19 +5,19 @@ from dotenv import load_dotenv
 from google import genai
 from google.genai import types
 
-from prompts import prompt_dictionary_en
+from prompts import prompts
 
 load_dotenv()
 
 
-def generate(term: str) -> str:
+def generate(prompt_selector: str, term: str) -> str:
     client = genai.Client(api_key=os.environ.get("GOOGLE_API_KEY"))
 
     contents = [
         types.Content(
             role="user",
             parts=[
-                types.Part.from_text(text=prompt_dictionary_en(term)),
+                types.Part.from_text(text=prompts[prompt_selector](term)),
             ]
         ),
     ]
@@ -34,5 +34,5 @@ def generate(term: str) -> str:
 
 
 if __name__ == "__main__":
-    answer = generate("flash")
+    answer = generate("dictionary_en", "flash")
     Path("answer.md").write_text(answer)
