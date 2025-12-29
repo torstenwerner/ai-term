@@ -1,2 +1,4 @@
 .env
 answer*.md
+backend/lambda_function.zip
+backend/lambda_package/
