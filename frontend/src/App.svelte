@@ -63,7 +63,6 @@
                         placeholder="Mars"
                         title="Enter a term"
                         disabled={loading}
-                        maxLength="20"
                 />
                 <button type="submit" disabled={loading || !prompt}>
                     {loading ? 'Please wait' : 'Submit'}
