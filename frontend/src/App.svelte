@@ -47,6 +47,11 @@
 <div class="app-container">
     <main>
         <form on:submit|preventDefault={handleSubmit}>
+            <select bind:value={type} disabled={loading}>
+                <option value="DICTIONARY_EN">Dictionary English</option>
+                <option value="ENCYCLOPEDIA_EN">Encyclopedia English</option>
+                <option value="ENCYCLOPEDIA_DE">Encyclopedia German</option>
+            </select>
             <div class="input-group">
                 <input
                         type="text"
@@ -94,6 +99,16 @@
         display: flex;
         gap: 1rem;
         margin-bottom: 2rem;
+    }
+
+    select {
+        padding: 0.5rem;
+        font-size: 1rem;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        background-color: white;
+        margin-bottom: 1rem;
+        width: 100%;
     }
 
     input {
