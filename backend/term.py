@@ -34,5 +34,6 @@ def generate(prompt_selector: str, term: str) -> str:
 
 
 if __name__ == "__main__":
-    answer = generate("dictionary_en", "flash")
+    # answer = generate("dictionary_en", "flash")
+    answer = generate("encyclopedia_en", "Python")
     Path("answer.md").write_text(answer)
