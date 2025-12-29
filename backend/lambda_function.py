@@ -65,6 +65,12 @@ def create_response(status_code: int, body: object) -> dict:
     """
     return {
         'statusCode': status_code,
+        'headers': {
+            'Content-Type': 'application/json',
+            'Access-Control-Allow-Origin': '*',  # Enable CORS
+            'Access-Control-Allow-Headers': 'Content-Type',
+            'Access-Control-Allow-Methods': 'POST, OPTIONS'
+        },
         'body': json.dumps(body)
     }
 

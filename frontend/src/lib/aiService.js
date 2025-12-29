@@ -13,12 +13,12 @@ export async function askAi(prompt) {
             'Content-Type': 'application/json',
             'x-api-key': REST_API_KEY,
         },
-        body: JSON.stringify({ prompt })
+        body: JSON.stringify({prompt_type: "DICTIONARY_EN", term: prompt})
     });
 
     if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
     }
 
-    return await response.json();
+    return (await response.json()).result;
 } 

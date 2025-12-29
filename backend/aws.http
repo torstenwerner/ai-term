@@ -27,3 +27,12 @@ x-api-key: {{awsApiKey}}
   "prompt_type": "ENCYCLOPEDIA_DE",
   "term": "Mars"
 }
+
+### vulnerability analysis (original)
+POST https://veuitj2bi4.execute-api.us-east-1.amazonaws.com/default/vulnerability-analysis
+Content-Type: application/json
+x-api-key: {{awsApiKey}}
+
+{
+  "prompt": "CVE-2021-44228"
+}
