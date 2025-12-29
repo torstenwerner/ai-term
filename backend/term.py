@@ -34,5 +34,5 @@ def generate(term: str) -> str:
 
 
 if __name__ == "__main__":
-    answer = generate("dictionary")
+    answer = generate("flash")
     Path("answer.md").write_text(answer)
