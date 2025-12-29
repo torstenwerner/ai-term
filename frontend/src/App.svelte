@@ -60,7 +60,7 @@
                 <input
                         type="text"
                         bind:value={prompt}
-                        placeholder="flash"
+                        placeholder="Mars"
                         title="Enter a term"
                         disabled={loading}
                         maxLength="20"
