@@ -1,6 +1,9 @@
 [project]
-name = "ai-term"
+name = "ai-term-backend"
 version = "0.1.0"
 description = "Add your description here"
 requires-python = ">=3.13"
-dependencies = []
+dependencies = [
+    "dotenv>=0.9.9",
+    "google-genai>=1.56.0"
+]
