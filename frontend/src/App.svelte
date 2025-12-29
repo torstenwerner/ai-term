@@ -9,6 +9,7 @@
     let response = '';
     let loading = false;
     let error = null;
+    let inputElement;
 
     onMount(() => {
         const urlParams = new URLSearchParams(window.location.search);
@@ -22,6 +23,7 @@
 
     function handleTypeChange() {
         prompt = '';
+        inputElement?.focus();
     }
 
     async function handleSubmit() {
@@ -60,6 +62,7 @@
                 <input
                         type="text"
                         bind:value={prompt}
+                        bind:this={inputElement}
                         placeholder="Mars"
                         title="Enter a term"
                         disabled={loading}
