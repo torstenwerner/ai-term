@@ -11,6 +11,14 @@ load_dotenv()
 
 
 def generate(prompt_type: PromptType, term: str) -> str:
+    """
+    Generates a text response based on the given prompt type and term using the GenAI
+    API client.
+
+    :param prompt_type: Indicates the type of prompt. Must be an instance of PromptType.
+    :param term: The specific term or input string used within the generated prompt.
+    :return: The AI answer text as a stripped string.
+    """
     client = genai.Client(api_key=os.environ.get("GOOGLE_API_KEY"))
 
     contents = [

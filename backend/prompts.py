@@ -2,11 +2,26 @@ from enum import StrEnum, auto
 
 
 class PromptType(StrEnum):
+    """
+    Enumeration for various types of prompts.
+
+    :ivar DICTIONARY_EN: Represents an English dictionary prompt type.
+    :type DICTIONARY_EN: str
+    :ivar ENCYCLOPEDIA_EN: Represents an English encyclopedia prompt type.
+    :type ENCYCLOPEDIA_EN: str
+    """
     DICTIONARY_EN = "DICTIONARY_EN"
     ENCYCLOPEDIA_EN = "ENCYCLOPEDIA_EN"
 
 
 def prompt(type: PromptType, term: str) -> str:
+    """
+    Generates a prompt based on the specified type and term provided.
+
+    :param type: Must be an instance of `PromptType`.
+    :param term: Specifies the term for which the prompt will be generated. Expected as a string.
+    :return: A string containing the formatted prompt based on the input parameters.
+    """
     match type:
         case PromptType.DICTIONARY_EN:
             return f"""

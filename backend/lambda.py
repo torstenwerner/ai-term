@@ -21,7 +21,7 @@ def lambda_handler(event, context):
     }
     """
     try:
-        # Parse input from event body if it's a string (API Gateway format)
+        # Parse input from the event body if it's a string (API Gateway format)
         if isinstance(event.get('body'), str):
             body = json.loads(event['body'])
         else:
@@ -33,45 +33,36 @@ def lambda_handler(event, context):
 
         # Validate inputs
         if not term:
-            return {
-                'statusCode': 400,
-                'body': json.dumps({
-                    'error': 'Missing required parameter: term'
-                })
-            }
+            return create_response(400, {'error': 'Missing required parameter: term'})
 
         # Convert string to PromptType enum
         try:
             prompt_type = PromptType(prompt_type_str)
-        except KeyError:
-            return {
-                'statusCode': 400,
-                'body': json.dumps({
-                    'error': f'Invalid prompt_type.'
-                })
-            }
+        except ValueError:
+            return create_response(400, {'error': f'Invalid prompt_type: {prompt_type_str}'})
 
         # Call generate function
         result = generate(prompt_type, term)
 
         # Return success response
-        return {
-            'statusCode': 200,
-            'body': json.dumps({
-                'result': result
-            })
-        }
+        return create_response(200, {'result': result})
 
     except Exception as e:
         # Return error response
-        return {
-            'statusCode': 500,
-            'body': json.dumps({
-                'error': str(e)
-            })
-        }
+        return create_response(500, {'error': str(e)})
 
-def create_response(status_code: int, body: str) -> dict:
+
+def create_response(status_code: int, body: object) -> dict:
+    """
+    Generate an HTTP response dictionary with the given status code and body.
+
+    :param status_code: HTTP status code for the response.
+    :type status_code: int
+    :param body: The content of the response, which will be JSON-encoded.
+    :type body: object
+    :return: A dictionary with `statusCode` and `body` keys representing the HTTP response.
+    :rtype: dict
+    """
     return {
         'statusCode': status_code,
         'body': json.dumps(body)
