@@ -31,7 +31,7 @@
       }
       window.history.pushState({}, '', url);
 
-      const result = await askAi(prompt);
+      const result = await askAi("DICTIONARY_EN", prompt);
       response = await marked(result.toString());
     } catch (e) {
       error = e instanceof Error ? e.message : 'An error occurred';
@@ -48,8 +48,8 @@
         <input
           type="text"
           bind:value={prompt}
-          placeholder="CVE-2021-44228"
-          title="Enter a CVE id"
+          placeholder="flash"
+          title="Enter a term"
           disabled={loading}
           maxLength="20"
         />
