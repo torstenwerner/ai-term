@@ -4,11 +4,34 @@
     import Footer from './lib/Footer.svelte';
     import {onMount} from 'svelte';
 
+    /**
+     * Represents the search type e.g. dictionary, encyclopedia.
+     */
     let type = '';
+
+    /**
+     * Represents the user-provided term.
+     */
     let prompt = '';
+
+    /**
+     * The HTML response from the AI-backed backend service.
+     */
     let response = '';
+
+    /**
+     * The state of the loading indicator.
+     */
     let loading = false;
+
+    /**
+     * Optional error message.
+     */
     let error = null;
+
+    /**
+     * Reference to the input element in the DOM.
+     */
     let inputElement;
 
     onMount(() => {
@@ -21,15 +44,26 @@
         }
     });
 
+    /**
+     * Reacts to a change of the search type.
+     */
     function handleTypeChange() {
         prompt = '';
         inputElement?.focus();
     }
 
+    /**
+     * Reacts to a click on the input element.
+     */
     function handleInputClick() {
         inputElement?.select();
     }
 
+    /**
+     * Handles the form submission by updating the URL and fetching the AI response.
+     *
+     * @return {Promise<void>} A promise that resolves when the process is complete.
+     */
     async function handleSubmit() {
         loading = true;
         error = null;
