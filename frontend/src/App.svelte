@@ -47,6 +47,21 @@
     });
 
     /**
+     * Returns a placeholder text for the input element depending on the search type.
+     */
+    function placeholder() {
+        switch (type) {
+            case 'DICTIONARY_EN':
+                return 'enunciate';
+            case 'ENCYCLOPEDIA_EN':
+                return 'Aphrodite';
+            case 'ENCYCLOPEDIA_DE':
+                return 'Mythologie'
+        }
+        return '';
+    }
+
+    /**
      * Reacts to a change of the search type.
      */
     function handleTypeChange() {
@@ -101,7 +116,7 @@
                         bind:value={prompt}
                         bind:this={inputElement}
                         on:click={handleInputClick}
-                        placeholder="Mars"
+                        placeholder={placeholder()}
                         title="Enter a term"
                         disabled={loading}
                 />

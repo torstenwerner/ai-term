@@ -6,11 +6,11 @@
     function description() {
         switch (type) {
             case 'DICTIONARY_EN':
-                return 'A dictionary of English words.';
+                return 'A dictionary of English language.';
             case 'ENCYCLOPEDIA_EN':
-                return 'An encyclopedia of English words.';
+                return 'An encyclopedia answering in English language.';
             case 'ENCYCLOPEDIA_DE':
-                return 'An encyclopedia of German words.'
+                return 'An encyclopedia answering in German language.'
         }
         return '';
     }
