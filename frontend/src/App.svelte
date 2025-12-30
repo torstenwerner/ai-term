@@ -48,8 +48,8 @@
      * Reacts to a change of the search type.
      */
     function handleTypeChange() {
-        prompt = '';
         inputElement?.focus();
+        inputElement?.select();
     }
 
     /**
