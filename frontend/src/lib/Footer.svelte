@@ -45,6 +45,20 @@
     color: #0366d6;
   }
 
+  @media (prefers-color-scheme: dark) {
+    .footer {
+      background-color: #213547;
+    }
+
+    .github-link {
+      color: unset;
+    }
+
+    .github-link:hover {
+      color: #646cff;
+    }
+  }
+
   .github-icon {
     width: 20px;
     height: 20px;

@@ -150,7 +150,6 @@
         font-size: 1rem;
         border: 1px solid #ccc;
         border-radius: 4px;
-        background-color: white;
         margin-bottom: 1rem;
         width: 100%;
     }
@@ -184,10 +183,15 @@
     }
 
     .response {
-        /*background-color: #f9f9f9;*/
         padding: 1rem;
         border-radius: 4px;
         border: 1px solid #eee;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        .response {
+            border-color: #555;
+        }
     }
 
     .response :global(h1),
