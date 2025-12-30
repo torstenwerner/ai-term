@@ -36,14 +36,33 @@
      */
     let inputElement;
 
-    onMount(() => {
+    /**
+     * Reads URL parameters and updates the state accordingly.
+     */
+    function loadFromUrl() {
         const urlParams = new URLSearchParams(window.location.search);
         type = urlParams.get('type') || "DICTIONARY_EN";
         const urlPrompt = urlParams.get('prompt');
         if (urlPrompt) {
             prompt = urlPrompt;
             handleSubmit();
+        } else {
+            // Clear response when navigating to a URL without a prompt
+            response = '';
+            error = null;
         }
+    }
+
+    onMount(() => {
+        loadFromUrl();
+
+        // Listen for browser history navigation (back/forward buttons)
+        window.addEventListener('popstate', loadFromUrl);
+
+        // Cleanup listener when the component is destroyed
+        return () => {
+            window.removeEventListener('popstate', loadFromUrl);
+        };
     });
 
     /**
