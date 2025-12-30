@@ -2,13 +2,30 @@
     export let type;
     export let disabled = false;
     export let onChange;
+
+    function description() {
+        switch (type) {
+            case 'DICTIONARY_EN':
+                return 'A dictionary of English words.';
+            case 'ENCYCLOPEDIA_EN':
+                return 'An encyclopedia of English words.';
+            case 'ENCYCLOPEDIA_DE':
+                return 'An encyclopedia of German words.'
+        }
+        return '';
+    }
 </script>
 
-<select bind:value={type} on:change={onChange} disabled={disabled}>
+<select
+        bind:value={type}
+        on:change={onChange}
+        disabled={disabled}
+>
     <option value="DICTIONARY_EN">Dictionary English</option>
     <option value="ENCYCLOPEDIA_EN">Encyclopedia English</option>
     <option value="ENCYCLOPEDIA_DE">Encyclopedia German</option>
 </select>
+<em>{description()}</em>
 
 <style>
     select {
@@ -16,6 +33,7 @@
         font-size: 1rem;
         border: 1px solid #ccc;
         border-radius: 4px;
+        margin-right: 1rem;
         margin-bottom: 1rem;
         width: max(250px, 33%);
     }
