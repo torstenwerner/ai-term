@@ -19,6 +19,10 @@ def generate(prompt_type: PromptType, term: str) -> str:
     :param term: The specific term or input string used within the generated prompt.
     :return: The AI answer text as a stripped string in HTML format.
     """
+    
+    if len(term) > 1000:
+        raise ValueError("The term is too long.")
+
     client = genai.Client(api_key=os.environ.get("GOOGLE_API_KEY"))
 
     contents = [
@@ -45,4 +49,5 @@ if __name__ == "__main__":
     # answer = generate(PromptType.DICTIONARY_EN, "flash")
     # answer = generate(PromptType.ENCYCLOPEDIA_EN, "Python")
     answer = generate(PromptType.ENCYCLOPEDIA_DE, "Mars")
+    # answer = generate(PromptType.ENCYCLOPEDIA_DE, "x"*1001)
     Path("answer.md").write_text(answer)
