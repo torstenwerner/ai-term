@@ -144,6 +144,7 @@
     main {
         margin: 2rem auto;
         padding: 0 1rem;
+        width: 100%;
     }
 
     .input-group {
@@ -158,7 +159,7 @@
         border: 1px solid #ccc;
         border-radius: 4px;
         margin-bottom: 1rem;
-        width: 100%;
+        width: max(250px, 33%);
     }
 
     input {
