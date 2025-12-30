@@ -21,9 +21,9 @@
         on:change={onChange}
         disabled={disabled}
 >
-    <option value="DICTIONARY_EN">Dictionary English</option>
-    <option value="ENCYCLOPEDIA_EN">Encyclopedia English</option>
-    <option value="ENCYCLOPEDIA_DE">Encyclopedia German</option>
+    <option value="DICTIONARY_EN">English Dictionary</option>
+    <option value="ENCYCLOPEDIA_EN">English Encyclopedia</option>
+    <option value="ENCYCLOPEDIA_DE">German Encyclopedia</option>
 </select>
 <em>{description()}</em>
 
