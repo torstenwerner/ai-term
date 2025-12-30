@@ -5,4 +5,5 @@ answer*.md
 http-client.private.env.json
 backend/lambda_function.zip
 backend/lambda_package/
+frontend/dist/
 node_modules
