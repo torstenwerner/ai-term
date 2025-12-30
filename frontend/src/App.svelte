@@ -53,17 +53,7 @@
         }
     }
 
-    onMount(() => {
-        loadFromUrl();
-
-        // Listen for browser history navigation (back/forward buttons)
-        window.addEventListener('popstate', loadFromUrl);
-
-        // Cleanup listener when the component is destroyed
-        return () => {
-            window.removeEventListener('popstate', loadFromUrl);
-        };
-    });
+    onMount(loadFromUrl);
 
     /**
      * Returns a placeholder text for the input element depending on the search type.
@@ -124,6 +114,8 @@
         }
     }
 </script>
+
+<svelte:window on:popstate={loadFromUrl} />
 
 <div class="app-container">
     <main>
