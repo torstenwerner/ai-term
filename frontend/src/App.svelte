@@ -66,6 +66,7 @@
      */
     async function handleSubmit() {
         loading = true;
+        response = "<em>Loading...</em>"
         error = null;
         try {
             // Update URL with the new prompt
