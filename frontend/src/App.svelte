@@ -105,6 +105,9 @@
             }
             window.history.pushState({}, '', url);
 
+            // Update window title
+            document.title = prompt || 'dictionary';
+
             const result = await askAi(type, prompt);
             response = await marked(result.toString());
         } catch (e) {
