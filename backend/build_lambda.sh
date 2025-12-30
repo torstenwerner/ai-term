@@ -21,8 +21,7 @@ uv pip install --quiet --target "$PACKAGE_DIR" \
     --python-version 3.13 \
     --quiet \
     "dotenv>=0.9.9" \
-    "google-genai>=1.56.0" \
-    "markdown>=3.10"
+    "google-genai>=1.56.0"
 
 # Copy Python files
 echo "Copying Python files..."

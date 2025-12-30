@@ -4,7 +4,6 @@ from pathlib import Path
 from dotenv import load_dotenv
 from google import genai
 from google.genai import types
-from markdown import markdown
 
 from prompts import prompt, PromptType
 
@@ -39,11 +38,11 @@ def generate(prompt_type: PromptType, term: str) -> str:
         contents=contents,
         config=generate_content_config,
     )
-    return markdown(response.text.strip(), extensions=["extra", "fenced_code"])
+    return response.text.strip()
 
 
 if __name__ == "__main__":
     # answer = generate(PromptType.DICTIONARY_EN, "flash")
     # answer = generate(PromptType.ENCYCLOPEDIA_EN, "Python")
     answer = generate(PromptType.ENCYCLOPEDIA_DE, "Mars")
-    Path("answer.html").write_text(answer)
+    Path("answer.md").write_text(answer)
