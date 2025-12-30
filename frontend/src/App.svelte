@@ -3,6 +3,7 @@
     import {askAi} from './lib/aiService';
     import Footer from './lib/Footer.svelte';
     import Loading from './lib/Loading.svelte';
+    import TypeSelector from './lib/TypeSelector.svelte';
     import {onMount} from 'svelte';
 
     /**
@@ -93,11 +94,7 @@
 <div class="app-container">
     <main>
         <form on:submit|preventDefault={handleSubmit}>
-            <select bind:value={type} on:change={handleTypeChange} disabled={loading}>
-                <option value="DICTIONARY_EN">English Dictionary</option>
-                <option value="ENCYCLOPEDIA_EN">English Encyclopedia</option>
-                <option value="ENCYCLOPEDIA_DE">German Encyclopedia</option>
-            </select>
+            <TypeSelector bind:type disabled={loading} onChange={handleTypeChange} />
             <div class="input-group">
                 <input
                         type="text"
@@ -152,19 +149,11 @@
         margin-bottom: 2rem;
     }
 
-    select {
-        padding: 0.5rem;
-        font-size: 1rem;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-        margin-bottom: 1rem;
-        width: max(250px, 33%);
-    }
-
     input {
         flex: 1;
         padding: 0.5rem;
         font-size: 1rem;
+        background-color: unset;
         border: 1px solid #ccc;
         border-radius: 4px;
     }
@@ -212,7 +201,6 @@
     }
 
     .response :global(pre) {
-        /*background-color: #f1f1f1;*/
         padding: 1rem;
         border-radius: 4px;
         overflow-x: auto;
