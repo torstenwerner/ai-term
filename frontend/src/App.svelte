@@ -37,6 +37,26 @@
     let inputElement;
 
     /**
+     * Fetches AI response without modifying browser history.
+     */
+    async function fetchResponse() {
+        loading = true;
+        response = ""
+        error = null;
+        try {
+            // Update window title
+            document.title = prompt || 'dictionary';
+
+            const result = await askAi(type, prompt);
+            response = await marked(result.toString());
+        } catch (e) {
+            error = e instanceof Error ? e.message : 'An error occurred';
+        } finally {
+            loading = false;
+        }
+    }
+
+    /**
      * Reads URL parameters and updates the state accordingly.
      */
     function loadFromUrl() {
@@ -45,11 +65,12 @@
         const urlPrompt = urlParams.get('prompt');
         if (urlPrompt) {
             prompt = urlPrompt;
-            handleSubmit();
+            fetchResponse();
         } else {
             // Clear response when navigating to a URL without a prompt
             response = '';
             error = null;
+            document.title = 'dictionary';
         }
     }
 
@@ -91,30 +112,18 @@
      * @return {Promise<void>} A promise that resolves when the process is complete.
      */
     async function handleSubmit() {
-        loading = true;
-        response = ""
-        error = null;
-        try {
-            // Update URL with the new prompt
-            const url = new URL(window.location.href);
-            url.searchParams.set('type', type);
-            if (prompt) {
-                url.searchParams.set('prompt', prompt);
-            } else {
-                url.searchParams.delete('prompt');
-            }
-            window.history.pushState({}, '', url);
-
-            // Update window title
-            document.title = prompt || 'dictionary';
-
-            const result = await askAi(type, prompt);
-            response = await marked(result.toString());
-        } catch (e) {
-            error = e instanceof Error ? e.message : 'An error occurred';
-        } finally {
-            loading = false;
+        // Update URL with the new prompt
+        const url = new URL(window.location.href);
+        url.searchParams.set('type', type);
+        if (prompt) {
+            url.searchParams.set('prompt', prompt);
+        } else {
+            url.searchParams.delete('prompt');
         }
+        window.history.pushState({}, '', url);
+
+        // Fetch the response
+        await fetchResponse();
     }
 </script>
 
