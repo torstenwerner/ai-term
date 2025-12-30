@@ -66,5 +66,5 @@ jobs:
       # The --delete flag removes files in the bucket that are not present in webapp/dist
       - name: Sync files to S3
         run: |
-          aws s3 sync ./frontend/dist s3://${{ vars.S3_BUCKET_NAME }} --delete
+          aws s3 sync ./frontend/dist s3://${{ vars.S3_BUCKET_NAME }}/ai --delete
 
