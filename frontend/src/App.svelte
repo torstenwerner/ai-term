@@ -177,8 +177,14 @@
 
     main {
         margin: 2rem auto;
-        padding: 0 1rem;
+        padding: 0;
         width: 100%;
+    }
+
+    @media (max-width: 992px) {
+        main {
+            margin: 0 auto;
+        }
     }
 
     .input-group {
