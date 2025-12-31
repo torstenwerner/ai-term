@@ -83,7 +83,7 @@ The term to explain is: {term}
 """
         case PromptType.YOUTUBE_EN:
             return f"""
-Analyze the content of the YouTube video. Use the YouTube tool. Provide a concise analysis covering:
+Analyze the content of the YouTube video. Provide a concise analysis covering:
 
 1.  **Main Thesis/Claim:** What is the central point the creator is making?
 2.  **Key Topics:** List the main subjects discussed, referencing specific examples or timestamps where applicable.
@@ -91,10 +91,11 @@ Analyze the content of the YouTube video. Use the YouTube tool. Provide a concis
 4.  **Summary:** Provide a concise summary of the video content.
 
 Use the provided title, chapter timestamps/descriptions, and description text for your analysis.
+Start the article naturally without referring to the prompt. End the article naturally without a conclusion section unless it fits the content.
 """
         case PromptType.YOUTUBE_DE:
             return f"""
-Analysiere den Inhalt des vom Benutzer angegebenen YouTube Videos. Benutze das YouTube Tool. Erstelle eine präzise Analyse mit folgenden Schwerpunkten:
+Analysiere den Inhalt des vom Benutzer angegebenen YouTube Videos. Erstelle eine präzise Analyse mit folgenden Schwerpunkten:
 
 1. **Hauptthema / Kernaussage:** Welche zentrale Aussage wird gemacht?
 2. **Wesentliche Einzelthemen / -aussagen:** Liste die wesentlichen Einzelthemen aus. Referenziere Beispiele oder füge Zeitstempel hinzu.
@@ -102,6 +103,7 @@ Analysiere den Inhalt des vom Benutzer angegebenen YouTube Videos. Benutze das Y
 4. **Zusammenfassung:** Fasse den Inhalt auf kompakte Weise zusammen.
 
 Benutze den angegebenen Titel, die Kapitel, Zeitstempel und die Beschreibung ebenfalls in der Analyse.
+Beginne den Artikel natürlich, ohne auf die Eingabeaufforderung zu verweisen. Beende den Artikel natürlich, ohne einen Schlussabschnitt, es sei denn, dieser passt zum Inhalt.
 """
 
 
