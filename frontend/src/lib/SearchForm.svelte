@@ -1,8 +1,5 @@
 <script>
-    import {createEventDispatcher} from 'svelte';
     import TypeSelector from './TypeSelector.svelte';
-
-    const dispatch = createEventDispatcher();
 
     /**
      * Represents the search type e.g. dictionary, encyclopedia.
@@ -18,6 +15,11 @@
      * The state of the loading indicator.
      */
     export let loading = false;
+
+    /**
+     * Callback function to handle form submission.
+     */
+    export let onsubmit = undefined;
 
     /**
      * Reference to the input element in the DOM.
@@ -58,8 +60,8 @@
      * Handles the form submission.
      */
     function handleSubmit() {
-        // Dispatch a custom event that the parent can listen to
-        dispatch('submit', { type, prompt });
+        // Call the callback if provided
+        onsubmit?.();
     }
 </script>
 

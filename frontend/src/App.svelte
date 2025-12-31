@@ -118,7 +118,7 @@
             bind:prompt
             bind:this={searchFormComponent}
             {loading}
-            on:submit={handleSubmit}
+            onsubmit={handleSubmit}
         />
 
         {#if loading}
