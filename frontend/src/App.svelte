@@ -93,9 +93,9 @@
     }
 
     /**
-     * Reacts to a change of the search type.
+     * Focuses the input element and selects all its text.
      */
-    function handleTypeChange() {
+    function focusInputElement() {
         inputElement?.focus();
         inputElement?.select();
     }
@@ -126,14 +126,24 @@
         // Fetch the response
         await fetchResponse();
     }
+
+    /**
+     * Handles keyboard shortcuts.
+     */
+    function handleKeydown(event) {
+        if (event.key === '/') {
+            event.preventDefault();
+            focusInputElement();
+        }
+    }
 </script>
 
-<svelte:window on:popstate={loadFromUrl} />
+<svelte:window on:popstate={loadFromUrl} on:keydown={handleKeydown} />
 
 <div class="app-container">
     <main>
         <form on:submit|preventDefault={handleSubmit}>
-            <TypeSelector bind:type disabled={loading} onChange={handleTypeChange} />
+            <TypeSelector bind:type disabled={loading} onChange={focusInputElement} />
             <div class="input-group">
                 <input
                         type="text"
@@ -141,7 +151,7 @@
                         bind:this={inputElement}
                         on:click={handleInputClick}
                         placeholder={placeholder()}
-                        title="Enter a term"
+                        title="Enter a term. Hotkey: /"
                         disabled={loading}
                 />
                 <button type="submit" disabled={loading || !prompt}>
