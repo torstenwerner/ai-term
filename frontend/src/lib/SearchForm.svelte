@@ -87,7 +87,7 @@
         }
 
         if ((type === 'YOUTUBE_EN' || type === 'YOUTUBE_DE') && !prompt.startsWith('https://youtu')) {
-            return 'Please enter a valid YouTube URL (must start with https://youtu)';
+            return 'Please enter a YouTube link starting with https://youtu';
         }
 
         return '';
