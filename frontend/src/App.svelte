@@ -4,6 +4,7 @@
     import Footer from './lib/Footer.svelte';
     import Loading from './lib/Loading.svelte';
     import TypeSelector from './lib/TypeSelector.svelte';
+    import CopyToClipboard from './lib/CopyToClipboard.svelte';
     import {onMount} from 'svelte';
 
     /**
@@ -176,6 +177,7 @@
                     {@html htmlResponse}
                 {/await}
             </div>
+            <CopyToClipboard text={response} />
         {/if}
     </main>
     <Footer/>
