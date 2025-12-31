@@ -137,7 +137,9 @@
                     {@html htmlResponse}
                 {/await}
             </div>
-            <CopyToClipboard text={response} />
+            <div class="copy-wrapper">
+                <CopyToClipboard text={response} />
+            </div>
         {/if}
     </main>
     <Footer/>
@@ -152,7 +154,7 @@
 
     main {
         margin: 2rem auto;
-        padding: 0;
+        padding: 0 1rem;
         width: 100%;
     }
 
@@ -164,13 +166,22 @@
 
     .error {
         color: #ff3e00;
-        margin-bottom: 1rem;
+        margin: 0 auto 1rem;
+        max-width: 800px;
+        text-align: center;
     }
 
     .response {
         padding: 1rem;
         border-radius: 4px;
         border: 1px solid #eee;
+        margin: 0 auto;
+        max-width: 800px;
+    }
+
+    .copy-wrapper {
+        max-width: 800px;
+        margin: 0 auto;
     }
 
     @media (prefers-color-scheme: dark) {
