@@ -18,33 +18,33 @@
             copyClicked = true;
             setTimeout(() => {
                 copyClicked = false;
-            }, 750);
+            }, 1000);
         } catch (e) {
             console.error('Failed to copy to clipboard:', e);
         }
     }
 </script>
 
-<div class="copy-container" title="Copy to clipboard">
+<div class="copy-container" title="Copy to clipboard" on:click={copyToClipboard}>
     <svg
-        class="copy-icon"
-        class:clicked={copyClicked}
-        on:click={copyToClipboard}
-        xmlns="http://www.w3.org/2000/svg"
-        width="20"
-        height="20"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="2"
-        stroke-linecap="round"
-        stroke-linejoin="round"
+            class:clicked={copyClicked}
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
     >
         <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
         <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
     </svg>
     {#if copyClicked}
-        <span class="copy-text">Copied to clipboard</span>
+        <span class="copy-label copy-done">Copied to clipboard</span>
+    {:else}
+        <span class="copy-label">Copy to clipboard</span>
     {/if}
 </div>
 
@@ -54,42 +54,42 @@
         align-items: center;
         gap: 0.5rem;
         margin-top: 1rem;
-    }
-
-    .copy-icon {
         cursor: pointer;
         color: #666;
         transition: color 0.2s ease;
     }
 
-    .copy-icon:hover {
+    .copy-container:hover {
         color: #333;
     }
 
-    .copy-icon.clicked {
+    .copy-container .clicked {
         color: #4CAF50;
         transform: scale(0.9);
     }
 
-    .copy-text {
+    .copy-label {
         font-size: 0.875rem;
+    }
+
+    .copy-done {
         color: #4CAF50;
     }
 
     @media (prefers-color-scheme: dark) {
-        .copy-icon {
+        .copy-container {
             color: #999;
         }
 
-        .copy-icon:hover {
+        .copy-container:hover {
             color: #ccc;
         }
 
-        .copy-icon.clicked {
+        .copy-container.clicked {
             color: #4CAF50;
         }
 
-        .copy-text {
+        .copy-done {
             color: #4CAF50;
         }
     }
