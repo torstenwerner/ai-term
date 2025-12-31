@@ -48,7 +48,7 @@
             document.title = prompt || 'dictionary';
 
             const result = await askAi(type, prompt);
-            response = await marked(result.toString());
+            response = result.toString();
         } catch (e) {
             error = e instanceof Error ? e.message : 'An error occurred';
         } finally {
@@ -138,12 +138,12 @@
     }
 </script>
 
-<svelte:window on:popstate={loadFromUrl} on:keydown={handleKeydown} />
+<svelte:window on:popstate={loadFromUrl} on:keydown={handleKeydown}/>
 
 <div class="app-container">
     <main>
         <form on:submit|preventDefault={handleSubmit}>
-            <TypeSelector bind:type disabled={loading} onChange={focusInputElement} />
+            <TypeSelector bind:type disabled={loading} onChange={focusInputElement}/>
             <div class="input-group">
                 <input
                         type="text"
@@ -161,7 +161,7 @@
         </form>
 
         {#if loading}
-            <Loading />
+            <Loading/>
         {/if}
 
         {#if error}
@@ -172,7 +172,9 @@
 
         {#if response}
             <div class="response">
-                {@html response}
+                {#await marked(response) then htmlResponse}
+                    {@html htmlResponse}
+                {/await}
             </div>
         {/if}
     </main>
