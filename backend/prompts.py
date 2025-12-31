@@ -4,15 +4,12 @@ from enum import StrEnum, auto
 class PromptType(StrEnum):
     """
     Enumeration for various types of prompts.
-
-    :ivar DICTIONARY_EN: Represents an English dictionary prompt type.
-    :type DICTIONARY_EN: str
-    :ivar ENCYCLOPEDIA_EN: Represents an English encyclopedia prompt type.
-    :type ENCYCLOPEDIA_EN: str
     """
     DICTIONARY_EN = "DICTIONARY_EN"
     ENCYCLOPEDIA_EN = "ENCYCLOPEDIA_EN"
     ENCYCLOPEDIA_DE = "ENCYCLOPEDIA_DE"
+    YOUTUBE_EN = "YOUTUBE_EN"
+    YOUTUBE_DE = "YOUTUBE_DE"
 
 
 def prompt(type: PromptType, term: str) -> str:
@@ -84,9 +81,33 @@ Formatieren Sie die Antwort **sauber** mit Markdown-Elementen wie **Fettdruck zu
 
 The term to explain is: {term}
 """
+        case PromptType.YOUTUBE_EN:
+            return f"""
+Analyze the content of the YouTube video. Use the YouTube tool. Provide a concise analysis covering:
+
+1.  **Main Thesis/Claim:** What is the central point the creator is making?
+2.  **Key Topics:** List the main subjects discussed, referencing specific examples or timestamps where applicable.
+3.  **Call to Action:** Identify any explicit requests made to the viewer.
+4.  **Summary:** Provide a concise summary of the video content.
+
+Use the provided title, chapter timestamps/descriptions, and description text for your analysis.
+"""
+        case PromptType.YOUTUBE_DE:
+            return f"""
+Analysiere den Inhalt des vom Benutzer angegebenen YouTube Videos. Benutze das YouTube Tool. Erstelle eine präzise Analyse mit folgenden Schwerpunkten:
+
+1. **Hauptthema / Kernaussage:** Welche zentrale Aussage wird gemacht?
+2. **Wesentliche Einzelthemen / -aussagen:** Liste die wesentlichen Einzelthemen aus. Referenziere Beispiele oder füge Zeitstempel hinzu.
+3. **Aufruf zum Handeln:** Identifiziere ausdrücklich Aufrufe an den Zuschauer.
+4. **Zusammenfassung:** Fasse den Inhalt auf kompakte Weise zusammen.
+
+Benutze den angegebenen Titel, die Kapitel, Zeitstempel und die Beschreibung ebenfalls in der Analyse.
+"""
 
 
 if __name__ == "__main__":
     # print(prompt(PromptType.DICTIONARY_EN, "flash"))
     # print(prompt(PromptType.ENCYCLOPEDIA_EN,"Python"))
-    print(prompt(PromptType.ENCYCLOPEDIA_DE,"Mars"))
+    # print(prompt(PromptType.ENCYCLOPEDIA_DE,"Mars"))
+    # print(prompt(PromptType.YOUTUBE_EN,"https://youtu.be/9Gv7eZemHrE?si=KaBuragcVAFG12wG"))
+    print(prompt(PromptType.YOUTUBE_DE,"https://youtu.be/vtXvl_A0jbc?si=DrnnBsAPD6_wwRJp"))

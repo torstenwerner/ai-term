@@ -28,6 +28,16 @@ x-api-key: {{awsApiKey}}
   "term": "Mars"
 }
 
+### YOUTUBE_EN
+POST https://veuitj2bi4.execute-api.us-east-1.amazonaws.com/default/ai-term
+Content-Type: application/json
+x-api-key: {{awsApiKey}}
+
+{
+  "prompt_type": "YOUTUBE_EN",
+  "term": "https://youtu.be/9Gv7eZemHrE?si=KaBuragcVAFG12wG"
+}
+
 ### vulnerability analysis (original)
 POST https://veuitj2bi4.execute-api.us-east-1.amazonaws.com/default/vulnerability-analysis
 Content-Type: application/json

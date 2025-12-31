@@ -19,18 +19,24 @@ def generate(prompt_type: PromptType, term: str) -> str:
     :param term: The specific term or input string used within the generated prompt.
     :return: The AI answer text as a stripped string in HTML format.
     """
-    
+
     if len(term) > 1000:
         raise ValueError("The term is too long.")
 
     client = genai.Client(api_key=os.environ.get("GOOGLE_API_KEY"))
 
+    parts = [
+        types.Part.from_text(text=prompt(prompt_type, term)),
+    ]
+    if prompt_type == PromptType.YOUTUBE_EN or prompt_type == PromptType.YOUTUBE_DE:
+        parts.append(types.Part(
+            file_data=types.FileData(file_uri=term),
+            video_metadata=types.VideoMetadata(start_offset='30s', end_offset='300s', fps=0.1)
+        ))
     contents = [
         types.Content(
             role="user",
-            parts=[
-                types.Part.from_text(text=prompt(prompt_type, term)),
-            ]
+            parts=parts
         ),
     ]
     generate_content_config = types.GenerateContentConfig(
@@ -48,6 +54,8 @@ def generate(prompt_type: PromptType, term: str) -> str:
 if __name__ == "__main__":
     # answer = generate(PromptType.DICTIONARY_EN, "flash")
     # answer = generate(PromptType.ENCYCLOPEDIA_EN, "Python")
-    answer = generate(PromptType.ENCYCLOPEDIA_DE, "Mars")
+    # answer = generate(PromptType.ENCYCLOPEDIA_DE, "Mars")
     # answer = generate(PromptType.ENCYCLOPEDIA_DE, "x"*1001)
+    answer = generate(PromptType.YOUTUBE_EN, "https://youtu.be/9Gv7eZemHrE?si=KaBuragcVAFG12wG")
+    # answer = generate(PromptType.YOUTUBE_DE, "https://youtu.be/vtXvl_A0jbc?si=DrnnBsAPD6_wwRJp")
     Path("answer.md").write_text(answer)
