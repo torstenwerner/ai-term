@@ -63,6 +63,37 @@
     }
 
     /**
+     * Checks if the current input is valid based on the selected type.
+     */
+    function isValidInput() {
+        if (!prompt) {
+            return false;
+        }
+
+        // YouTube types require URL starting with "https://youtu"
+        if (type === 'YOUTUBE_EN' || type === 'YOUTUBE_DE') {
+            return prompt.startsWith('https://youtu');
+        }
+
+        return true;
+    }
+
+    /**
+     * Returns validation error message if input is invalid.
+     */
+    function getValidationError() {
+        if (!prompt) {
+            return '';
+        }
+
+        if ((type === 'YOUTUBE_EN' || type === 'YOUTUBE_DE') && !prompt.startsWith('https://youtu')) {
+            return 'Please enter a valid YouTube URL (must start with https://youtu)';
+        }
+
+        return '';
+    }
+
+    /**
      * Focuses the input element and selects all its text.
      */
     export function focusInputElement() {
@@ -81,8 +112,9 @@
      * Handles the form submission.
      */
     function handleSubmit() {
-        // Call the callback if provided
-        onsubmit?.();
+        if (isValidInput()) {
+            onsubmit?.();
+        }
     }
 </script>
 
@@ -106,10 +138,13 @@
                     disabled={loading}
                     aria-label="Enter a term. Hotkey: /"
             />
-            <button type="submit" disabled={loading || !prompt}>
+            <button type="submit" disabled={loading || !isValidInput()}>
                 Submit
             </button>
         </div>
+        {#if !isValidInput()}
+            <p class="error-message">{getValidationError()}</p>
+        {/if}
     </form>
     <p class="description">{description()}</p>
 </div>
@@ -195,6 +230,13 @@
         text-align: center;
     }
 
+    .error-message {
+        margin: 0.5rem 0 0;
+        color: #dc2626;
+        font-size: 0.875rem;
+        text-align: center;
+    }
+
     @media (max-width: 768px) {
         .search-container {
             flex-direction: column;
@@ -239,6 +281,10 @@
 
         .description {
             color: #9ca3af;
+        }
+
+        .error-message {
+            color: #ef4444;
         }
     }
 </style>
