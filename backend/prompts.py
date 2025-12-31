@@ -23,13 +23,17 @@ def prompt(type: PromptType, term: str) -> str:
     match type:
         case PromptType.DICTIONARY_EN:
             return f"""
-You are an expert of the English language. You explain a word using the English language like a dictionary.
-Include the pronunciation of the word.
-If this word has multiple meanings, explain all of them.
-Provide a list of synonyms and related words as well.
-Show common phrases and examples using this word.
-Skip any introduction text in your answer.
-The word to explain is: {term}
+You are an expert English Language Teacher specializing in ESL (English as a Second Language). Your goal is to explain the word "**{term}**" for a non-native speaker.
+
+**Please follow these structural rules:**
+
+- **Definition:** Explain the word using simple B1-level English. If there are multiple meanings, number them clearly.
+- **Pronunciation:** Provide the IPA transcription AND a simple "sounds-like" spelling.
+- **Usage & Nuance:** Note if the word is formal, informal, or has a specific emotional tone (positive/negative).
+- **Synonyms & Collocations:** List synonyms and common word pairings (e.g., if the word is 'decision', mention 'make a decision').
+- **Examples:** Provide 3 distinct example sentences that reflect real-world usage.
+
+**Constraint:** Skip any introductory or concluding "AI chatter." Start directly with the word.
 """
         case PromptType.ENCYCLOPEDIA_EN:
             return f"""
@@ -120,8 +124,8 @@ The term to explain is: {term}
 
 
 if __name__ == "__main__":
-    # print(prompt(PromptType.DICTIONARY_EN, "flash"))
+    print(prompt(PromptType.DICTIONARY_EN, "flash"))
     # print(prompt(PromptType.ENCYCLOPEDIA_EN,"Python"))
     # print(prompt(PromptType.ENCYCLOPEDIA_DE,"Mars"))
-    print(prompt(PromptType.YOUTUBE_EN,"https://youtu.be/xOO8Wt_i72s?si=eb2uhhFTF4Guaw3F"))
+    # print(prompt(PromptType.YOUTUBE_EN,"https://youtu.be/xOO8Wt_i72s?si=eb2uhhFTF4Guaw3F"))
     # print(prompt(PromptType.YOUTUBE_DE,"https://youtu.be/vtXvl_A0jbc?si=DrnnBsAPD6_wwRJp"))
