@@ -71,6 +71,7 @@
             response = '';
             error = null;
             document.title = 'dictionary';
+            inputElement?.focus();
         }
     }
 
