@@ -83,27 +83,37 @@ The term to explain is: {term}
 """
         case PromptType.YOUTUBE_EN:
             return f"""
-Analyze the content of the YouTube video. Provide a concise analysis covering:
+**Role:** Act as an engaging YouTube curator and presenter. Your goal is to convince your audience why this video is worth their time based on its opening.
 
-1.  **Main Thesis/Claim:** What is the central point the creator is making?
-2.  **Key Topics:** List the main subjects discussed, referencing specific examples or timestamps where applicable.
-3.  **Call to Action:** Identify any explicit requests made to the viewer.
-4.  **Summary:** Provide a concise summary of the video content.
+**Task:** Analyze the provided title, chapters, and description (covering the first 5 minutes). Write a compelling "First Look" article that covers:
 
-Use the provided title, chapter timestamps/descriptions, and description text for your analysis.
-Start the article naturally without referring to the prompt. End the article naturally without a conclusion section unless it fits the content.
+- **The Hook (Category & Thesis):** What is this video, and what is the big claim it's making right out of the gate?
+- **The Meat (Key Topics):** What are the most interesting examples or subjects introduced so far?
+- **The Verdict (Call to Action & Summary):** Based on these first 5 minutes, what is the creator asking of us, and what is the overall "vibe" of the piece?
+
+**Style Guidelines:**
+
+- Do not use headers like "Category" or "Thesis".
+- Speak directly to the audience (e.g., "You’ll want to see how they handle...").
+- Acknowledge that this is a preview of the video's start.
+- Start and end naturally without meta-commentary about the prompt.
 """
         case PromptType.YOUTUBE_DE:
             return f"""
-Analysiere den Inhalt des vom Benutzer angegebenen YouTube Videos. Erstelle eine präzise Analyse mit folgenden Schwerpunkten:
+**Rolle:** Agiere als mitreißender YouTube-Kurator und Moderator. Dein Ziel ist es, dein Publikum davon zu überzeugen, warum dieses Video bereits in den ersten Minuten absolut sehenswert ist.
 
-1. **Hauptthema / Kernaussage:** Welche zentrale Aussage wird gemacht?
-2. **Wesentliche Einzelthemen / -aussagen:** Liste die wesentlichen Einzelthemen aus. Referenziere Beispiele oder füge Zeitstempel hinzu.
-3. **Aufruf zum Handeln:** Identifiziere ausdrücklich Aufrufe an den Zuschauer.
-4. **Zusammenfassung:** Fasse den Inhalt auf kompakte Weise zusammen.
+**Aufgabe:** Analysiere den bereitgestellten Titel, die Kapitel und die Beschreibung (basierend auf den ersten 5 Minuten). Schreibe einen packenden „Ersten Einblick“-Artikel, der Folgendes abdeckt:
 
-Benutze den angegebenen Titel, die Kapitel, Zeitstempel und die Beschreibung ebenfalls in der Analyse.
-Beginne den Artikel natürlich, ohne auf die Eingabeaufforderung zu verweisen. Beende den Artikel natürlich, ohne einen Schlussabschnitt, es sei denn, dieser passt zum Inhalt.
+- **Der Hook (Kategorie & These):** Um welche Art von Video handelt es sich und welche zentrale Behauptung wird direkt zu Beginn aufgestellt?
+- **Der Kern (Hauptthemen):** Was sind die interessantesten Beispiele oder Themen, die bisher eingeführt wurden?
+- **Das Fazit (Call-to-Action & Zusammenfassung):** Was verlangt der Creator basierend auf diesen ersten 5 Minuten von uns und was ist die allgemeine Stimmung des Beitrags?
+
+**Stil-Richtlinien:**
+
+- Verwende keine Überschriften wie „Kategorie“ oder „These“.
+- Sprich das Publikum direkt an (z. B. „Du solltest dir unbedingt ansehen, wie hier mit... umgegangen wird“).
+- Mache deutlich, dass es sich um eine Vorschau auf den Anfang des Videos handelt.
+- Beginne und beende den Text natürlich, ohne Meta-Kommentare über den Prompt selbst zu verlieren.
 """
 
 
@@ -111,5 +121,5 @@ if __name__ == "__main__":
     # print(prompt(PromptType.DICTIONARY_EN, "flash"))
     # print(prompt(PromptType.ENCYCLOPEDIA_EN,"Python"))
     # print(prompt(PromptType.ENCYCLOPEDIA_DE,"Mars"))
-    # print(prompt(PromptType.YOUTUBE_EN,"https://youtu.be/9Gv7eZemHrE?si=KaBuragcVAFG12wG"))
-    print(prompt(PromptType.YOUTUBE_DE,"https://youtu.be/vtXvl_A0jbc?si=DrnnBsAPD6_wwRJp"))
+    print(prompt(PromptType.YOUTUBE_EN,"https://youtu.be/xOO8Wt_i72s?si=eb2uhhFTF4Guaw3F"))
+    # print(prompt(PromptType.YOUTUBE_DE,"https://youtu.be/vtXvl_A0jbc?si=DrnnBsAPD6_wwRJp"))
