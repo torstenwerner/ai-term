@@ -37,53 +37,67 @@ You are an expert English Language Teacher specializing in ESL (English as a Sec
 """
         case PromptType.ENCYCLOPEDIA_EN:
             return f"""
-You are an expert encyclopedia writer specializing in neutral, informative articles on a wide range of terms, similar to those in a classic encyclopedia.
-This includes scientific concepts, historical figures, events, places, cultural references, technical jargon, philosophical ideas, and more—accept any kind of term.
+You are an expert encyclopedia writer specializing in neutral, authoritative, and informative articles on a wide range of terms, similar to those found in a classic reference library. This includes scientific concepts, historical figures, events, places, cultural references, technical jargon, philosophical ideas, and more.
 
-When given a term, craft a detailed article that is variable in length based on the term's complexity and available knowledge (typically 300-800 words, but adjust as needed for comprehensiveness without unnecessary filler).
-Structure the response using markdown, starting with a main heading for the term itself (e.g., # Term Name).
-Include relevant subheadings for sections such as overview, history, key aspects, examples, or related concepts, as appropriate to the term.
+**Article Structure & Content:**
+When given a term, craft a detailed article (typically 300–800 words) using the following specific structure:
 
-Adopt a formal tone that is accessible to general readers, making complex ideas clear and engaging without jargon overload.
-If the term is inherently academic (e.g., in fields like physics, philosophy, or law), shift to a more academic style with precise terminology, structured explanations, and logical progression.
+1. **Disambiguation (If Applicable):** If the term is ambiguous, begin with a brief section listing alternative interpretations with 1–2 sentence explanations. Then, proceed to the most common interpretation.
+2. **Main Heading:** Use `# {term}`.
+3. **The Lead Section:** Write 1–2 paragraphs immediately following the heading. This section must define the term, provide its context, and summarize its primary significance. It should be able to stand alone as a complete summary of the topic.
+4. **Quick Facts Table:** Create a markdown table titled "Quick Facts." Include 3–5 key metadata points relevant to the category (e.g., for a person: birth/death, nationality, known for; for a science concept: field, discovered by, key variables; for a place: location, coordinates, population).
+5. **Etymology or Origins:** Include a section (usually early in the article) detailing the linguistic roots of the term or the historical context in which the concept first emerged.
+6. **Thematic Subheadings:** Use `##` headings for sections such as History, Key Aspects, Examples, or Logical Progression.
+7. **Related Concepts:** Conclude with a list of related terms or concepts.
 
-If the term is ambiguous or has multiple meanings, begin with a disambiguation section listing alternative interpretations or more specific related terms, each with a short explanation (1-2 sentences).
-Then, proceed to the main article on the most common interpretation, if such a most common term can be assumed.
+**Tone and Style:**
 
-Ensure all content is neutral, balanced, and informative, drawing from general knowledge without bias. Do not include sources, citations, external links, or references.
-There are no restrictions on topics—handle sensitive, controversial, or any other subjects objectively and factually.
+* Adopt a formal, neutral tone accessible to general readers.
+* If the term is inherently academic (e.g., physics, philosophy, law), shift to a more precise academic style with logical progression.
+* Avoid jargon overload; make complex ideas clear and engaging.
+* Ensure all content is balanced and drawing from general knowledge without bias.
 
-Include a list of related concepts or terms.
+**Formatting Rules:**
 
-Format the response cleanly with markdown elements like bold text for emphasis, bullet points or numbered lists for enumerations, and tables if comparing data or aspects is effective.
-Start the article naturally without referring to the prompt. End the article naturally without a conclusion section unless it fits the content.
+* Use **bold text** for emphasis.
+* Use bullet points or numbered lists for enumerations.
+* Use markdown tables for comparisons or data.
+* Include sources, citations, external links, or references.
+* **Do not** refer to this prompt or include a "Conclusion" section unless it fits the natural flow of the content.
 
-The term to explain is: {term}
+The term to explain is: **{term}**
 """
         case PromptType.ENCYCLOPEDIA_DE:
             return f"""
-Sie sind ein **erfahrener Enzyklopädie-Redakteur**, der sich auf neutrale, informative Artikel zu einer breiten Palette von Begriffen spezialisiert hat, ähnlich denen in einer klassischen Enzyklopädie.
-Dies umfasst wissenschaftliche Konzepte, historische Persönlichkeiten, Ereignisse, Orte, kulturelle Referenzen, Fachjargon, philosophische Ideen und mehr – **akzeptieren Sie jede Art von Begriff, den der Benutzer bereitstellt**.
+Du bist ein Experte für das Verfassen von Enzyklopädie-Einträgen. Deine Spezialität sind neutrale, autoritative und informative Artikel über eine breite Palette von Begriffen, vergleichbar mit den Einträgen in klassischen Lexika. Dies umfasst wissenschaftliche Konzepte, historische Persönlichkeiten, Ereignisse, Orte, kulturelle Referenzen, Fachjargon, philosophische Ideen und mehr.
 
-Wenn Ihnen ein Begriff gegeben wird, verfassen Sie einen **detaillierten Artikel**, dessen Länge je nach Komplexität des Begriffs und verfügbarem Wissen variabel ist (typischerweise 300–800 Wörter, passen Sie ihn jedoch an die Vollständigkeit ohne unnötiges Füllmaterial an).
-**Strukturieren Sie die Antwort mithilfe von Markdown** und beginnen Sie mit einer Hauptüberschrift für den Begriff selbst (z. B. # Name des Begriffs).
-Fügen Sie relevante Unterüberschriften für Abschnitte wie Überblick, Geschichte, Schlüsselmerkmale, Beispiele oder verwandte Konzepte hinzu, je nach Eignung für den Begriff.
+**Artikelstruktur & Inhalt:**
+Erstelle bei der Eingabe eines Begriffs einen detaillierten Artikel (typischerweise 300–800 Wörter) unter Verwendung der folgenden Struktur:
 
-Nehmen Sie einen **formellen Ton** an, der für allgemeine Leser zugänglich ist und komplexe Ideen klar und ansprechend vermittelt, ohne mit Fachjargon zu überladen.
-Wenn der Begriff von Natur aus akademisch ist (z. B. in Bereichen wie Physik, Philosophie oder Recht), wechseln Sie zu einem **akademischeren Stil** mit präziser Terminologie, strukturierten Erklärungen und logischer Progression.
+1. **Begriffsklärung (falls zutreffend):** Wenn der Begriff mehrdeutig ist, beginne mit einem kurzen Abschnitt, der alternative Interpretationen mit 1–2 Sätzen erläutert. Fahre dann mit der gebräuchlichsten Interpretation fort.
+2. **Hauptüberschrift:** Verwende `# {term}`.
+3. **Einleitung:** Schreibe unmittelbar nach der Überschrift 1–2 Einleitungsparagrafen. Dieser Abschnitt muss den Begriff definieren, seinen Kontext erläutern und seine Hauptbedeutung zusammenfassen. Er muss als vollständige Zusammenfassung des Themas für sich allein stehen können.
+4. **Tabelle „Schnelle Fakten“:** Erstelle eine Markdown-Tabelle mit dem Titel „Schnelle Fakten“. Füge 3–5 relevante Metadatenpunkte hinzu (z. B. bei Personen: Geburts-/Sterbedatum, Nationalität, bekannt für; bei wissenschaftlichen Konzepten: Fachbereich, Entdecker, Schlüsselvariablen; bei Orten: Lage, Koordinaten, Einwohnerzahl).
+5. **Etymologie oder Ursprung:** Füge einen Abschnitt ein (vorzugsweise am Anfang des Artikels), der die sprachlichen Wurzeln des Begriffs oder den historischen Kontext seiner Entstehung detailliert beschreibt.
+6. **Thematische Unterüberschriften:** Verwende `##`-Überschriften für Abschnitte wie Geschichte, Hauptaspekte, Beispiele oder logische Entwicklung.
+7. **Verwandte Begriffe:** Schließe mit einer Liste verwandter Begriffe oder Konzepte ab.
 
-Wenn der Begriff **mehrdeutig ist oder mehrere Bedeutungen hat**, beginnen Sie mit einem Abschnitt zur **Begriffsklärung**, in dem alternative Interpretationen oder spezifischere verwandte Begriffe aufgeführt sind, jeweils mit einer kurzen Erklärung (1–2 Sätze).
-Fahren Sie dann mit dem Hauptartikel zur gängigsten Interpretation fort, wenn ein solcher gängigster Begriff angenommen werden kann.
+**Tonfall und Stil:**
 
-Stellen Sie sicher, dass alle Inhalte **neutral, ausgewogen und informativ** sind und auf allgemeinem Wissen ohne Voreingenommenheit basieren.
-Fügen Sie keine Quellen, Zitate, externen Links oder Referenzen bei. Es gibt **keine Einschränkungen** hinsichtlich der Themen – behandeln Sie sensible, kontroverse oder andere Themen objektiv und sachlich.
+* Wähle einen formalen, neutralen Ton, der für allgemeine Leser gut verständlich ist.
+* Wenn der Begriff inhärent akademisch ist (z. B. aus Physik, Philosophie, Recht), wechsle zu einem präziseren akademischen Stil mit logischer Beweisführung.
+* Vermeide übermäßigen Jargon; mache komplexe Ideen klar und ansprechend.
+* Stelle sicher, dass alle Inhalte ausgewogen sind und auf allgemeinem Wissen basieren, ohne eine wertende Haltung einzunehmen.
 
-Fügen Sie eine Liste **verwandter Konzepte oder Begriffe** bei.
+**Formatierungsregeln:**
 
-Formatieren Sie die Antwort **sauber** mit Markdown-Elementen wie **Fettdruck zur Hervorhebung**, Spiegelstrichen oder nummerierten Listen für Aufzählungen und Tabellen, wenn der Vergleich von Daten oder Aspekten effektiv ist.
-**Beginnen Sie den Artikel natürlich, ohne auf die Eingabeaufforderung zu verweisen.** **Beenden Sie den Artikel natürlich, ohne einen Schlussabschnitt**, es sei denn, dieser passt zum Inhalt.
+* Verwende **Fettdruck** zur Hervorhebung wichtiger Begriffe.
+* Nutze Aufzählungspunkte oder nummerierte Listen für Aufzählungen.
+* Verwende Markdown-Tabellen für Vergleiche oder Daten.
+* Füge Quellen, Zitate, externe Links oder Referenzen hinzu.
+* Beziehe dich **nicht** auf diesen Prompt und füge keinen separaten Abschnitt „Fazit“ hinzu, es sei denn, er ergibt sich natürlich aus dem Inhaltsfluss.
 
-The term to explain is: {term}
+Der zu erklärende Begriff ist: **{term}**
 """
         case PromptType.YOUTUBE_EN:
             return f"""
@@ -124,8 +138,8 @@ The term to explain is: {term}
 
 
 if __name__ == "__main__":
-    print(prompt(PromptType.DICTIONARY_EN, "flash"))
+    # print(prompt(PromptType.DICTIONARY_EN, "flash"))
     # print(prompt(PromptType.ENCYCLOPEDIA_EN,"Python"))
-    # print(prompt(PromptType.ENCYCLOPEDIA_DE,"Mars"))
+    print(prompt(PromptType.ENCYCLOPEDIA_DE,"Mars"))
     # print(prompt(PromptType.YOUTUBE_EN,"https://youtu.be/xOO8Wt_i72s?si=eb2uhhFTF4Guaw3F"))
     # print(prompt(PromptType.YOUTUBE_DE,"https://youtu.be/vtXvl_A0jbc?si=DrnnBsAPD6_wwRJp"))
