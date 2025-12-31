@@ -35,6 +35,10 @@
                 return 'Aphrodite';
             case 'ENCYCLOPEDIA_DE':
                 return 'Mythologie'
+            case 'YOUTUBE_EN':
+                return 'https://youtu.be/j6PbonHsqW0?si=czYETvD9kJd-EWbi'
+            case 'YOUTUBE_DE':
+                return 'https://youtu.be/j6PbonHsqW0?si=czYETvD9kJd-EWbi'
         }
         return '';
     }
@@ -97,7 +101,7 @@
                     bind:value={prompt}
                     bind:this={inputElement}
                     on:click={handleInputClick}
-                    placeholder="Search for a term..."
+                    placeholder="{placeholder()}"
                     title="Enter a term. Hotkey: /"
                     disabled={loading}
                     aria-label="Enter a term. Hotkey: /"
