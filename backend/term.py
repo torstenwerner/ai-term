@@ -31,7 +31,7 @@ def generate(prompt_type: PromptType, term: str) -> str:
     if prompt_type == PromptType.YOUTUBE_EN or prompt_type == PromptType.YOUTUBE_DE:
         parts.append(types.Part(
             file_data=types.FileData(file_uri=term),
-            video_metadata=types.VideoMetadata(start_offset='30s', end_offset='300s', fps=0.1)
+            video_metadata=types.VideoMetadata(end_offset='300s', fps=0.1)
         ))
     contents = [
         types.Content(
