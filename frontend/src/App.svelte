@@ -147,14 +147,13 @@
 
 <style>
     .app-container {
-        min-height: 80vH;
+        height: 100%;
         display: flex;
         flex-direction: column;
     }
 
     main {
         margin: 2rem auto;
-        padding: 0 1rem;
         width: 100%;
     }
 
@@ -181,7 +180,7 @@
 
     .copy-wrapper {
         max-width: 800px;
-        margin: 0 auto;
+        margin-left: 1rem;
     }
 
     @media (prefers-color-scheme: dark) {
