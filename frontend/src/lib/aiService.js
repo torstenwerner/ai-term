@@ -18,7 +18,7 @@ export async function askAi(prompt_type, term) {
     });
 
     if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
+        return `**Error communicating with the AI service.** (${response.status})`
     }
 
     return (await response.json()).result;
