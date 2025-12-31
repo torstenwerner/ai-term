@@ -11,6 +11,10 @@
                 return 'An encyclopedia answering in English language.';
             case 'ENCYCLOPEDIA_DE':
                 return 'An encyclopedia answering in German language.'
+            case 'YOUTUBE_EN':
+                return 'A YouTube summarizer in English language.'
+            case 'YOUTUBE_DE':
+                return 'A YouTube summarizer in German language.'
         }
         return '';
     }
@@ -24,6 +28,8 @@
     <option value="DICTIONARY_EN">English Dictionary</option>
     <option value="ENCYCLOPEDIA_EN">English Encyclopedia</option>
     <option value="ENCYCLOPEDIA_DE">German Encyclopedia</option>
+    <option value="YOUTUBE_EN">English YouTube</option>
+    <option value="YOUTUBE_DE">German YouTube</option>
 </select>
 <em>{description()}</em>
 
