@@ -154,6 +154,7 @@
                         placeholder={placeholder()}
                         title="Enter a term. Hotkey: /"
                         disabled={loading}
+                        aria-label="Enter a term. Hotkey: /"
                 />
                 <button type="submit" disabled={loading || !prompt}>
                     {loading ? 'Please wait' : 'Submit'}

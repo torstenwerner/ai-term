@@ -20,11 +20,7 @@
     }
 </script>
 
-<select
-        bind:value={type}
-        on:change={onChange}
-        disabled={disabled}
->
+<select bind:value={type} on:change={onChange} disabled={disabled} aria-label="search type selector">
     <option value="DICTIONARY_EN">English Dictionary</option>
     <option value="ENCYCLOPEDIA_EN">English Encyclopedia</option>
     <option value="ENCYCLOPEDIA_DE">German Encyclopedia</option>
