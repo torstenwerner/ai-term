@@ -3,7 +3,7 @@
     import {askAi} from './lib/aiService';
     import Footer from './lib/Footer.svelte';
     import Loading from './lib/Loading.svelte';
-    import TypeSelector from './lib/TypeSelector.svelte';
+    import SearchForm from './lib/SearchForm.svelte';
     import CopyToClipboard from './lib/CopyToClipboard.svelte';
     import {onMount} from 'svelte';
 
@@ -33,9 +33,9 @@
     let error = null;
 
     /**
-     * Reference to the input element in the DOM.
+     * Reference to the SearchForm component.
      */
-    let inputElement;
+    let searchFormComponent;
 
     /**
      * Fetches AI response without modifying browser history.
@@ -72,41 +72,11 @@
             response = '';
             error = null;
             document.title = 'dictionary';
-            inputElement?.focus();
+            searchFormComponent?.focusInputElement();
         }
     }
 
     onMount(loadFromUrl);
-
-    /**
-     * Returns a placeholder text for the input element depending on the search type.
-     */
-    function placeholder() {
-        switch (type) {
-            case 'DICTIONARY_EN':
-                return 'enunciate';
-            case 'ENCYCLOPEDIA_EN':
-                return 'Aphrodite';
-            case 'ENCYCLOPEDIA_DE':
-                return 'Mythologie'
-        }
-        return '';
-    }
-
-    /**
-     * Focuses the input element and selects all its text.
-     */
-    function focusInputElement() {
-        inputElement?.focus();
-        inputElement?.select();
-    }
-
-    /**
-     * Reacts to a click on the input element.
-     */
-    function handleInputClick() {
-        inputElement?.select();
-    }
 
     /**
      * Handles the form submission by updating the URL and fetching the AI response.
@@ -134,7 +104,7 @@
     function handleKeydown(event) {
         if (event.key === '/') {
             event.preventDefault();
-            focusInputElement();
+            searchFormComponent?.focusInputElement();
         }
     }
 </script>
@@ -143,24 +113,13 @@
 
 <div class="app-container">
     <main>
-        <form on:submit|preventDefault={handleSubmit}>
-            <TypeSelector bind:type disabled={loading} onChange={focusInputElement}/>
-            <div class="input-group">
-                <input
-                        type="text"
-                        bind:value={prompt}
-                        bind:this={inputElement}
-                        on:click={handleInputClick}
-                        placeholder={placeholder()}
-                        title="Enter a term. Hotkey: /"
-                        disabled={loading}
-                        aria-label="Enter a term. Hotkey: /"
-                />
-                <button type="submit" disabled={loading || !prompt}>
-                    {loading ? 'Please wait' : 'Submit'}
-                </button>
-            </div>
-        </form>
+        <SearchForm
+            bind:type
+            bind:prompt
+            bind:this={searchFormComponent}
+            {loading}
+            on:submit={handleSubmit}
+        />
 
         {#if loading}
             <Loading/>
@@ -201,36 +160,6 @@
         main {
             margin: 0 auto;
         }
-    }
-
-    .input-group {
-        display: flex;
-        gap: 1rem;
-        margin-bottom: 2rem;
-    }
-
-    input {
-        flex: 1;
-        padding: 0.5rem;
-        font-size: 1rem;
-        background-color: unset;
-        border: 1px solid #ccc;
-        border-radius: 4px;
-    }
-
-    button {
-        padding: 0.5rem 1rem;
-        font-size: 1rem;
-        background-color: #4CAF50;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-    }
-
-    button:disabled {
-        background-color: #cccccc;
-        cursor: not-allowed;
     }
 
     .error {
