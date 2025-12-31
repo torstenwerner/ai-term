@@ -56,6 +56,6 @@ if __name__ == "__main__":
     # answer = generate(PromptType.ENCYCLOPEDIA_EN, "Python")
     # answer = generate(PromptType.ENCYCLOPEDIA_DE, "Mars")
     # answer = generate(PromptType.ENCYCLOPEDIA_DE, "x"*1001)
-    # answer = generate(PromptType.YOUTUBE_EN, "https://youtu.be/xOO8Wt_i72s?si=eb2uhhFTF4Guaw3F")
-    answer = generate(PromptType.YOUTUBE_DE, "https://youtu.be/vtXvl_A0jbc?si=DrnnBsAPD6_wwRJp")
+    answer = generate(PromptType.YOUTUBE_EN, "https://youtu.be/xOO8Wt_i72s?si=eb2uhhFTF4Guaw3F")
+    # answer = generate(PromptType.YOUTUBE_DE, "https://youtu.be/vtXvl_A0jbc?si=DrnnBsAPD6_wwRJp")
     Path("answer.md").write_text(answer)

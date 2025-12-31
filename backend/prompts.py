@@ -90,6 +90,7 @@ The term to explain is: {term}
 - **The Hook (Category & Thesis):** What is this video, and what is the big claim it's making right out of the gate?
 - **The Meat (Key Topics):** What are the most interesting examples or subjects introduced so far?
 - **The Verdict (Call to Action & Summary):** Based on these first 5 minutes, what is the creator asking of us, and what is the overall "vibe" of the piece?
+- **Channel and Title:** What is the channel name and title of the video?**
 
 **Style Guidelines:**
 
@@ -107,6 +108,7 @@ The term to explain is: {term}
 - **Der Hook (Kategorie & These):** Um welche Art von Video handelt es sich und welche zentrale Behauptung wird direkt zu Beginn aufgestellt?
 - **Der Kern (Hauptthemen):** Was sind die interessantesten Beispiele oder Themen, die bisher eingeführt wurden?
 - **Das Fazit (Call-to-Action & Zusammenfassung):** Was verlangt der Creator basierend auf diesen ersten 5 Minuten von uns und was ist die allgemeine Stimmung des Beitrags?
+- **Kanal und Titel:** Wie lautet der Kanalname und der Titel des Videos?**
 
 **Stil-Richtlinien:**
 
