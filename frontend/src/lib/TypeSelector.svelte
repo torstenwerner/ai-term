@@ -12,9 +12,9 @@
             case 'ENCYCLOPEDIA_DE':
                 return 'An encyclopedia answering in German language.'
             case 'YOUTUBE_EN':
-                return 'A YouTube summarizer in English language.'
+                return 'A YouTube curator in English language.'
             case 'YOUTUBE_DE':
-                return 'A YouTube summarizer in German language.'
+                return 'A YouTube curator in German language.'
         }
         return '';
     }
