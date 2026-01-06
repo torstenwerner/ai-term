@@ -46,7 +46,7 @@
         error = null;
         try {
             // Update window title
-            document.title = prompt || 'dictionary';
+            document.title = prompt || 'AI Dictionary';
 
             const result = await askAi(type, prompt);
             response = result.toString();
@@ -71,7 +71,7 @@
             // Clear response when navigating to a URL without a prompt
             response = '';
             error = null;
-            document.title = 'dictionary';
+            document.title = 'AI Dictionary';
             searchFormComponent?.focusInputElement();
         }
     }
