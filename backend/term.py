@@ -33,6 +33,9 @@ def generate(prompt_type: PromptType, term: str) -> str:
             file_data=types.FileData(file_uri=term),
             video_metadata=types.VideoMetadata(end_offset='300s', fps=0.1)
         ))
+        model = os.environ.get("GOOGLE_MODEL_YOUTUBE")
+    else:
+        model = os.environ.get("GOOGLE_MODEL")
     contents = [
         types.Content(
             role="user",
@@ -44,7 +47,7 @@ def generate(prompt_type: PromptType, term: str) -> str:
     )
 
     response = client.models.generate_content(
-        model=os.environ.get("GOOGLE_MODEL"),
+        model=model,
         contents=contents,
         config=generate_content_config,
     )
