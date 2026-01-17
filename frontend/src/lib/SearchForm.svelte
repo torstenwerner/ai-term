@@ -27,6 +27,11 @@
     let inputElement;
 
     /**
+     * Boolean flag indicating whether the input element is currently focused.
+     */
+    let isInputFocused = false;
+
+    /**
      * Returns a placeholder text for the input element depending on the search type.
      */
     function placeholder() {
@@ -97,10 +102,20 @@
 
     /**
      * Focuses the input element and selects all its text.
+     * @returns {boolean} Whether the input element was focused successfully.
      */
     export function focusInputElement() {
+        if (isInputFocused) {
+            return false;
+        }
         inputElement?.focus();
         inputElement?.select();
+        isInputFocused = true;
+        return true;
+    }
+
+    function blurInputElement() {
+        isInputFocused = false;
     }
 
     /**
@@ -123,7 +138,8 @@
 <div class="form-wrapper">
     <form on:submit|preventDefault={handleSubmit}>
         <div class="search-container">
-            <select bind:value={type} on:change={focusInputElement} disabled={loading} aria-label="search type selector">
+            <select bind:value={type} on:change={focusInputElement} disabled={loading}
+                    aria-label="search type selector">
                 <option value="DICTIONARY_EN">English Dictionary</option>
                 <option value="ENCYCLOPEDIA_EN">English Encyclopedia</option>
                 <option value="ENCYCLOPEDIA_DE">German Encyclopedia</option>
@@ -135,6 +151,7 @@
                     bind:value={prompt}
                     bind:this={inputElement}
                     on:click={handleInputClick}
+                    on:blur={blurInputElement}
                     placeholder="{placeholder()}"
                     title="Enter a term. Hotkey: /"
                     disabled={loading}

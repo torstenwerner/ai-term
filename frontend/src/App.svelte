@@ -103,8 +103,10 @@
      */
     function handleKeydown(event) {
         if (event.key === '/') {
-            event.preventDefault();
-            searchFormComponent?.focusInputElement();
+            const hasFocused = searchFormComponent?.focusInputElement();
+            if (hasFocused) {
+                event.preventDefault();
+            }
         }
     }
 </script>
