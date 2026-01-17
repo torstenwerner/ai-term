@@ -1,4 +1,6 @@
 <script>
+    import {isValidYoutubeUrl, isYoutubePrompt} from "./utils.js";
+
     /**
      * Represents the search type e.g. dictionary, encyclopedia.
      */
@@ -71,8 +73,8 @@
         }
 
         // YouTube types require URL starting with "https://youtu"
-        if (type === 'YOUTUBE_EN' || type === 'YOUTUBE_DE') {
-            return prompt.startsWith('https://youtu');
+        if (isYoutubePrompt(type)) {
+            return isValidYoutubeUrl(prompt);
         }
 
         return true;
@@ -86,8 +88,8 @@
             return '';
         }
 
-        if ((type === 'YOUTUBE_EN' || type === 'YOUTUBE_DE') && !prompt.startsWith('https://youtu')) {
-            return 'Please enter a YouTube link starting with https://youtu';
+        if (isYoutubePrompt(type) && !isValidYoutubeUrl(prompt)) {
+            return 'Please enter a YouTube link starting with https://(www.)youtu';
         }
 
         return '';
