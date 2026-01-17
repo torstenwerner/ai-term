@@ -119,13 +119,6 @@
     }
 
     /**
-     * Reacts to a click on the input element.
-     */
-    function handleInputClick() {
-        inputElement?.select();
-    }
-
-    /**
      * Handles the form submission.
      */
     function handleSubmit() {
@@ -150,7 +143,7 @@
                     type="text"
                     bind:value={prompt}
                     bind:this={inputElement}
-                    on:click={handleInputClick}
+                    on:click={focusInputElement}
                     on:blur={blurInputElement}
                     placeholder="{placeholder()}"
                     title="Enter a term. Hotkey: /"
