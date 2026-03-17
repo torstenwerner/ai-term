@@ -57,15 +57,23 @@ jobs:
         uses: actions/deploy-pages@v4
 
       - name: Debug OIDC token claims
-        uses: actions/github-script@v7
+        uses: actions/github-script@v7   # or @v8 if you're on the latest – both work similarly here
         with:
           script: |
-            const core = require('@actions/core');
-            const token = await core.getIDToken('sts.amazonaws.com');  // same aud as action uses
+            const token = await core.getIDToken('sts.amazonaws.com');
             console.log("Raw ID token:", token);
-            // Decode JWT manually or just log claims
-            const claims = JSON.parse(Buffer.from(token.split('.')[1], 'base64').toString());
+
+            // Decode the payload (base64url → JSON)
+            const payloadBase64 = token.split('.')[1]
+              .replace(/-/g, '+')
+              .replace(/_/g, '/');
+            const payloadJson = Buffer.from(payloadBase64, 'base64').toString('utf8');
+            const claims = JSON.parse(payloadJson);
+
             console.log("Decoded claims:", JSON.stringify(claims, null, 2));
+
+            // Optional: set as step output if you want to use it later
+            core.setOutput('oidc-claims', JSON.stringify(claims));
 
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v6
