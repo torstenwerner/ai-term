@@ -1,4 +1,4 @@
-name: Deploy to S3 and Cloud Front
+name: Deploy frontend to S3 and Cloud Fround and the backend Lambda function
 
 on:
   push:
@@ -15,6 +15,8 @@ jobs:
     runs-on: ubuntu-latest
     env:
       NODE_VERSION: '24'
+      PYTHON_VERSION: '3.13'
+      AWS_LAMBDA_FUNCTION_NAME: ${{ vars.AWS_LAMBDA_FUNCTION_NAME }}
       VITE_REST_ENDPOINT: ${{ vars.VITE_REST_ENDPOINT }}
       VITE_REST_API_KEY: ${{ secrets.VITE_REST_API_KEY }}
     steps:
@@ -28,6 +30,14 @@ jobs:
           cache: 'npm'
           cache-dependency-path: frontend/package-lock.json
 
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Setup uv
+        uses: astral-sh/setup-uv@v6
+
       - name: Install dependencies
         working-directory: frontend
         run: npm ci
@@ -36,12 +46,23 @@ jobs:
         working-directory: frontend
         run: npm run build
 
+      - name: Package Lambda function
+        working-directory: backend
+        run: bash build_lambda.sh
+
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v6
         with:
           role-to-assume: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
           role-session-name: ai-term-deploy-${{ github.run_id }}
           aws-region: ${{ vars.AWS_REGION }}
+
+      - name: Update Lambda function code
+        run: |
+          aws lambda update-function-code \
+            --function-name "${{ env.AWS_LAMBDA_FUNCTION_NAME }}" \
+            --zip-file "fileb://backend/lambda_function.zip" \
+            --region "${{ vars.AWS_REGION }}"
 
       # Sync the frontend/dist directory to the specified S3 bucket.
       # The --delete flag removes files in the bucket that are not present in frontend/dist.
