@@ -8,7 +8,7 @@
         "s3:ListBucket",
         "s3:GetBucketLocation"
       ],
-      "Resource": "arn:aws:s3:::torsten-werner"
+      "Resource": "arn:aws:s3:::<BUCKET_NAME>"
     },
     {
       "Sid": "ManageSecureCommPrefix",
@@ -18,7 +18,7 @@
         "s3:PutObject",
         "s3:DeleteObject"
       ],
-      "Resource": "arn:aws:s3:::torsten-werner/ai/*"
+      "Resource": "arn:aws:s3:::<BUCKET_NAME>/ai/*"
     },
     {
       "Sid": "InvalidateCloudFront",
@@ -26,7 +26,7 @@
       "Action": [
         "cloudfront:CreateInvalidation"
       ],
-      "Resource": "arn:aws:cloudfront::168424651548:distribution/E1FF1QTS9EKPKZ"
+      "Resource": "arn:aws:cloudfront::<AWS_ACCOUNT_ID>:distribution/<DISTRIBUTION_ID>"
     },
     {
       "Sid": "UpdateLambdaFunctionCode",
@@ -34,7 +34,7 @@
       "Action": [
         "lambda:UpdateFunctionCode"
       ],
-      "Resource": "arn:aws:lambda:us-east-1:168424651548:function:ai-term"
+      "Resource": "arn:aws:lambda:us-east-1:<AWS_ACCOUNT_ID>:function:<FUNCTION_NAME>"
     }
   ]
 }
