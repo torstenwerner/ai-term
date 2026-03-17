@@ -1,10 +1,10 @@
-name: Deploy to GitHub Pages
+name: Deploy to S3 and Cloud Front
 
 on:
   push:
     branches:
       - main
-  workflow_dispatch:
+  workflow_dispatch: {}
 
 permissions:
   contents: read
@@ -22,16 +22,17 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-latest
     env:
+      NODE_VERSION: '24'
       VITE_REST_ENDPOINT: ${{ vars.VITE_REST_ENDPOINT }}
       VITE_REST_API_KEY: ${{ secrets.VITE_REST_API_KEY }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
 
       - name: Setup Node.js
-        uses: actions/setup-node@v4
+        uses: actions/setup-node@v6
         with:
-          node-version: '24'
+          node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
           cache-dependency-path: frontend/package-lock.json
 
@@ -56,10 +57,10 @@ jobs:
         uses: actions/deploy-pages@v4
 
       - name: Configure AWS Credentials
-        uses: aws-actions/configure-aws-credentials@v4
+        uses: aws-actions/configure-aws-credentials@v6
         with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          role-to-assume: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
+          role-session-name: secure-comm-deploy-${{ github.run_id }}
           aws-region: ${{ vars.AWS_REGION }}
 
       # Sync the frontend/dist directory to the specified S3 bucket.
