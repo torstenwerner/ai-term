@@ -60,7 +60,7 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v6
         with:
           role-to-assume: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
-          role-session-name: secure-comm-deploy-${{ github.run_id }}
+          role-session-name: ai-term-deploy-${{ github.run_id }}
           aws-region: ${{ vars.AWS_REGION }}
 
       # Sync the frontend/dist directory to the specified S3 bucket.
