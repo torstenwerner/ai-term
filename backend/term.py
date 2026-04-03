@@ -4,6 +4,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 from google import genai
 from google.genai import types
+from google.genai.types import ThinkingLevel
 
 from prompts import prompt, PromptType
 
@@ -42,8 +43,15 @@ def generate(prompt_type: PromptType, term: str) -> str:
             parts=parts
         ),
     ]
+    grounding_tool = types.Tool(
+        google_search=types.GoogleSearch()
+    )
     generate_content_config = types.GenerateContentConfig(
-        temperature=1.0
+        temperature=1.0,
+        thinking_config=types.ThinkingConfig(
+            thinking_level=ThinkingLevel.HIGH,
+        ),
+        tools=[grounding_tool]
     )
 
     response = client.models.generate_content(
@@ -57,7 +65,7 @@ def generate(prompt_type: PromptType, term: str) -> str:
 if __name__ == "__main__":
     # answer = generate(PromptType.DICTIONARY_EN, "enunciate")
     # answer = generate(PromptType.ENCYCLOPEDIA_EN, "Python")
-    answer = generate(PromptType.ENCYCLOPEDIA_DE, "Mars")
+    answer = generate(PromptType.ENCYCLOPEDIA_DE, "Collien Fernandes")
     # answer = generate(PromptType.ENCYCLOPEDIA_DE, "x"*1001)
     # answer = generate(PromptType.YOUTUBE_EN, "https://youtu.be/xOO8Wt_i72s?si=eb2uhhFTF4Guaw3F")
     # answer = generate(PromptType.YOUTUBE_DE, "https://youtu.be/vtXvl_A0jbc?si=DrnnBsAPD6_wwRJp")
