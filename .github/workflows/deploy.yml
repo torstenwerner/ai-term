@@ -50,10 +50,11 @@ jobs:
         working-directory: backend
         run: bash build_lambda.sh
 
+      # terraformed; hardcoding the role ARN temporarily
       - name: Configure AWS Credentials
         uses: aws-actions/configure-aws-credentials@v6
         with:
-          role-to-assume: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
+          role-to-assume: "arn:aws:iam::168424651548:role/tf-ai-term-code-updater"
           role-session-name: ai-term-deploy-${{ github.run_id }}
           aws-region: ${{ vars.AWS_REGION }}
 
@@ -63,6 +64,14 @@ jobs:
             --function-name "${{ env.AWS_LAMBDA_FUNCTION_NAME }}" \
             --zip-file "fileb://backend/lambda_function.zip" \
             --region "${{ vars.AWS_REGION }}"
+
+      # not yet terraformed
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v6
+        with:
+          role-to-assume: ${{ vars.AWS_DEPLOY_ROLE_ARN }}
+          role-session-name: ai-term-deploy-${{ github.run_id }}
+          aws-region: ${{ vars.AWS_REGION }}
 
       # Sync the frontend/dist directory to the specified S3 bucket.
       # The --delete flag removes files in the bucket that are not present in frontend/dist.
